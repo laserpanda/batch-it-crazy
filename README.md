@@ -51,14 +51,17 @@ The presets are stored in json-files. If you want to add your own you can either
 ## Recipes
 Here are some useful examples of commands for the interpreter:
 
-* 
+* 'mv %L ' + '%L'.replace('DSC', 'image_')
+rename file such as DSC1234.jpg to image_1234.jpg (linux)
 
-* 'dcraw -c 0.0 -4 -T -r 1 1 1 1 -o 6 %L'
+* 'mov %L ' + '%L'.replace('DSC', 'image_')
+rename file such as DSC1234.jpg to image_1234.jpg (windows)
 
-* 'mkdir -p %D/%P%F; ffmpeg -i %L -qscale:v 2 %D/%P%F/%P%F.%04d.jpg' (linux only)
+* 'dcraw_emu -c 0.0 -4 -T -r 1 1 1 1 -o 6 %L' 
+convert raw file from camera to linear TIFF (requires LibRaw/dcraw_emu)
+
+* 'mkdir -p %D/%P%F; ffmpeg -i %L -qscale:v 2 %D/%P%F/%P%F.%04d.jpg' 
 This line takes a video file and converts to jpegs that it puts in a subdirectory with the same name as the video file
-
-*
 
 
 
