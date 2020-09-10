@@ -63,6 +63,7 @@ convert raw file from camera to linear TIFF (requires LibRaw/dcraw_emu)
 * 'mkdir -p %D/%P%F; ffmpeg -i %L -qscale:v 2 %D/%P%F/%P%F.%04d.jpg' 
 This line takes a video file and converts to jpegs that it puts in a subdirectory with the same name as the video file
 
-
+* 'docker run -it --rm -u $(id -u ${USER}):$(id -g ${USER}) -v %D:/source MYIMAGE MYSCRIPT %B'
+Here is an example how you can run docker containers from batch-it-crazy. The -u parameters will only work in Linux
 
 
