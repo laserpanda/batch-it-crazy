@@ -24,7 +24,7 @@ Here you specify how to process the input lines. Use python to manipulate the in
 ### Input
 Here is a list of lines (file paths, for example) that you want to process. You can paste file names from the clipboard or you can drag and drop files straight from the file explorer.
 
-### Processed
+### Interpreted
 This is a list of the Input lines processed by the interpreter. Double check the output before you send it to the execution queue
 
 
