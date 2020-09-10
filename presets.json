@@ -1,0 +1,7 @@
+[
+{
+    "description": "rename photo", 
+    "preset": "'mv %L ' + line.replace('DSCF', 'photo_')", 
+    "help": "qscale = quality"
+}
+]
