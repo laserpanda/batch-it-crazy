@@ -31,7 +31,7 @@ def interpret(line, cmd, lineNumber):
         locals["prefix"] = locals["prefix"][:-1]
 
     rets = []
-    for i in cmd.split("\n"):
+    for i in cmd.splitlines():
         i = i.replace("%L", locals["line"]).replace("%D", locals["dirname"]).replace("%F", locals["filenumber"]).replace("%B", locals["basename"]).replace("%P", locals["prefix"]).replace("%N", locals["lineNumber"]).replace("%E", locals["extension"])
         try:
             ret = eval(i,locals)
@@ -119,7 +119,7 @@ class ListGroup(QVBoxLayout):
 
     def paste(self):
         clipboard = QApplication.clipboard()
-        lines = clipboard.text().split("\n")
+        lines = clipboard.text().splitlines()
         self.addLines(lines)
 
 
@@ -167,7 +167,7 @@ class LineList(QListWidget):
                     file_name += "/"
                 lines.append(file_name)
         else:
-            pass ###lines = e.gettext().split("\n")
+            pass ###lines = e.gettext().splitlines()
         
         self.group.addLines(lines)
 
