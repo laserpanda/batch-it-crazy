@@ -31,7 +31,7 @@ This is a list of the Input lines processed by the interpreter. Double check the
 ### Queue
 This is where lines wait to be processed. Normally they would be coming from the Processed list but you can also paste/drop commands if you only want to use Batch it crazy for execution.
 
-### Executioner
+### Executing
 If the execute checkbox is active, the executioner will take lines from the queue and execute. Multiple commands can be executed simultaneously by increasing the thread value
 
 ### Errors/Log
