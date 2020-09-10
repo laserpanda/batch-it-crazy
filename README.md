@@ -6,6 +6,8 @@ Batch it crazy is a powerful lightweight GUI tool for batch processing multiple 
 
 ## UI elements
 
+![Screenshot](docs/screenshot_001.jpg)
+
 ### Interpret
 Here you specify how to process the input lines. Use python to manipulate the input line to create a command you want to execute. The interpreter expects a string in return or a list of strings if you want to output multiple lines per input line.
 
