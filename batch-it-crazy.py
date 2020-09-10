@@ -3,6 +3,7 @@ import os
 import sys
 import time
 import multiprocessing
+import subprocess
 from PySide2 import QtCore
 from PySide2 import QtWidgets
 from PySide2.QtWidgets import QApplication, QMainWindow, QListWidget, QListWidgetItem, QVBoxLayout, QHBoxLayout, QWidget, QLineEdit, QPushButton, QDialog, QLabel, QProgressDialog, QCheckBox, QSpinBox
@@ -473,22 +474,22 @@ class ExecutionWorker(QtCore.QRunnable):
     def run(self):
         widget = self.app.window.executioner.addLines([self.line])[0]
         try:
-            
-            process = multiprocessing.Process(target=workerExecutionProcess, args=(self.line,))
+            q = multiprocessing.Queue()
+            process = multiprocessing.Process(target=workerExecutionProcess, args=(q, self.line,))
             process.start()
             process.join()
-
+            result = q.get()
             
-            if process.exitcode == 0:
-                self.app.window.log.log(self.line)
+            if result.returncode == 0:
+                self.app.window.log.log(self.line + " -- " + result.stdout)
             else:
-                self.app.window.errors.log(self.line)
+                self.app.window.errors.log(self.line + " -- " + result.stderr)
 
         except Exception as e:
             print("failed executing:", self.line)
             print(e)
             
-            self.app.window.errors.log(self.line)
+            self.app.window.errors.log(self.line + " -- unknown error")
 
         self.app.window.executioner.removeWidget(widget)
 
@@ -506,8 +507,10 @@ class QueueWorker(QtCore.QRunnable):
             time.sleep(.5)
 
 
-def workerExecutionProcess(line):
-    return os.system(line)
+def workerExecutionProcess(queue, line):
+    ret = subprocess.run(line, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, shell=True)
+    queue.put(ret)
+
 
 
 
